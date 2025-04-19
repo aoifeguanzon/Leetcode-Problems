@@ -1,0 +1,24 @@
+'''given two non-empty linked lists representing two non-negative integers, 
+with digits stored in reverse order, and your task is to add the two numbers and return the sum as a linked list in reverse order.
+
+# Brute force solution
+
+class Solution:
+    def addTwoNumbers(self, l1, l2):
+        result = []
+        carry = 0
+        i = 0
+
+        # Loop through both lists until both are exhausted and there's no carry left
+        while i < len(l1) or i < len(l2) or carry:
+            val1 = l1[i] if i < len(l1) else 0
+            val2 = l2[i] if i < len(l2) else 0
+
+            # Calculate the sum of corresponding digits and carry
+            total = val1 + val2 + carry
+            carry = total // 10
+            result.append(total % 10)
+
+            i += 1
+
+        return result
