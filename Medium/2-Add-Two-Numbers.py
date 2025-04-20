@@ -107,5 +107,8 @@ class Solution:
             if l1: l1 = l1.next  # move to the next node in l1 if it exists
             if l2: l2 = l2.next  # move to the next node in l2 if it exists
         
-        return dummy_head.next  # return the node after the dummy node
+        return dummy_head.next  # return all nodes after dummy node
+
+# current.next doesn't return all nodes because we're 'building' the linked list with it
+# since dummy_head stays as the start node, when we return dummy_head.next, we go through the finished linked list
 
