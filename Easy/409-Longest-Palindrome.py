@@ -2,6 +2,33 @@
 Given a string s which consists of lowercase or uppercase letters, 
 return the length of the longest palindrome that can be built with those letters.
 '''
+# Brute force solution
+def longestPalindrome(s):
+    count = 0
+    ans = 0
+    a = set(s)
+
+    for i in a:
+        if i % 2 == 0:
+            c = s.count(i)
+            if c % 2 == 0:
+                ans += c
+            else:
+                ans += c - 1
+                count = 1
+    
+    print(ans + count)
+
+'''
+Time Complexity: O(n²)  
+Creating `set(s)` takes O(n) time
+In the worst case, the set's size is `n`, and calling `s.count(i)` for each unique character takes O(n)
+.count basically a loop so we have a nested loop, therefore n * n = n^2
+
+Space Complexity: O(n)  
+The set or dictionary requires O(k) space, where `k` is the number of unique characters
+In the worst case, `k = n`, so the space complexity is O(n).
+'''
 
 # Solution 1 - hash map
 def longestPalindrome(s: str) -> int:
