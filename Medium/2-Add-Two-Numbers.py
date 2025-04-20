@@ -53,7 +53,7 @@ To write output as a normal number:
         Best method is .reverse(), takes up less space because it modifies the list in place
 
 '''
-# Brute force using normal lists
+# Brute force - normal lists
 class Solution:
     def addTwoNumbers(self, l1, l2):
         result = [] # initialise empty list which stores digits of sum, starting from rightmost digit (reversed)
@@ -81,7 +81,7 @@ Space complexity: O(n + m) as extra list stores digits
 Process both lists simultaneously
 '''
 
-# Optimal solution
+# Optimal solution - linked lists
 class ListNode:
     def __init__(self, val=0, next=None):
         self.val = val # value of current node
