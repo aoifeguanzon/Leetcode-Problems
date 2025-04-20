@@ -74,7 +74,7 @@ class Solution:
         return result
 
 '''
-Time complexity: O(n + m)
+Time complexity: O(n + m) ie. the length of both lists n and m
 Space complexity: O(n + m)
 
 Process both lists simultaneously
