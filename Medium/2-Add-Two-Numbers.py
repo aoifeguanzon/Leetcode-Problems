@@ -40,7 +40,8 @@ To write output as a normal number:
         reverse_iterator = reversed(result)
         print(list(reverse_iterator))
 
-        Need to make iterator as list, so with reversed() you create new list
+        Need to make iterator as list
+            With reversed() you create new list
         Uses more memory because it keeps original order
         O(n) time, O(n) space
 
@@ -52,7 +53,7 @@ To write output as a normal number:
         Best method is .reverse(), takes up less space because it modifies the list in place
 
 '''
-
+# Brute force using normal lists
 class Solution:
     def addTwoNumbers(self, l1, l2):
         result = [] # initialise empty list which stores digits of sum, starting from rightmost digit (reversed)
@@ -75,40 +76,71 @@ class Solution:
 
 '''
 Time complexity: O(n + m) ie. the length of both lists n and m
-Space complexity: O(n + m)
+Space complexity: O(n + m) as extra list stores digits
 
 Process both lists simultaneously
 '''
 
-# We could also use linked lists and iterate over the nodes but the solution takes longer to write, and time / space complexities are the same
+# Optimal solution
 class ListNode:
     def __init__(self, val=0, next=None):
-        self.val = val
-        self.next = next
+        self.val = val # value of current node
+        self.next = next # pointer to the next node
 
 class Solution:
-    def addTwoNumbers(self, l1, l2):
-        dummy_head = ListNode(0)  # dummy node as placeholder to simplify list building
+    def addTwoNumbers(self, l1, l2): 
+            # l1 and l2 are pointers to the first/head nodes of 2 linked lists
+            # each time we point to a node in l1 or l2 we automatically traverse through the whole list
+            ''' 
+            when we talk about passing a "linked list" to a function, what we’re actually passing is just the head node of that list
+            '''
+        dummy_head = ListNode(0)  # dummy nodes ensure we don’t have to check if the list is empty and handle the special case of assigning the first node in the result list
         current = dummy_head  # pointer to build the result list
         carry = 0
         
-        while l1 or l2 or carry:  # continue while either list has values or there's a carry
-            # get the values from l1 and l2, or use 0 if the list is exhausted
+        while l1 or l2 or carry:
+            # continue loop until pointers of l1 node and l2 node are None, and carry is also 0
+            # get the value of the current node from l1 and l2, or use 0 if the list is exhausted
             val1 = l1.val if l1 else 0
             val2 = l2.val if l2 else 0
             
             total = val1 + val2 + carry  # add the values and any carry from the previous step
             
             carry = total // 10  # calculate the new carry (if total >= 10)
-            current.next = ListNode(total % 10)  # add 'ones' digit to the result list
+            current.next = ListNode(total % 10)  # create new node with ones digit of total and add it as next node in results list
+            # current is used to CREATE pointers to nodes in RESULT list
+            current = current.next  # move pointer to newly created node in result list
             
-            current = current.next  # move to the next node in the result list
-            
-            if l1: l1 = l1.next  # move to the next node in l1 if it exists
-            if l2: l2 = l2.next  # move to the next node in l2 if it exists
+            if l1: l1 = l1.next  # if l1 isn't None, move to the next node in l1 (last/tail node always points to None)
+            if l2: l2 = l2.next  # if l2 isn't None, move to the next node in l2
         
-        return dummy_head.next  # return all nodes after dummy node
+        return dummy_head.next  # return node dummy node ie. head of result list (which returns next, next next, next next next etc)
 
 # current.next doesn't return all nodes because we're 'building' the linked list with it
 # since dummy_head stays as the start node, when we return dummy_head.next, we go through the finished linked list
 
+'''
+Same time and space complexities O(n + m)
+
+Time complexity: O(n + m) 
+Space complexity: O(n + m) as space is used for resulting linked list
+---
+l1 = 2 -> 4 -> 3
+l1 is a node with val = 2 and next pointing to the node with val = 4
+
+So l1.val is 2
+
+Then you move to l1 = l1.next (current = current.next), and now l1.val is 4, and so on
+This example is for a normal list, 
+'''
+
+'''
+To output a linked list:
+
+    def print_list(node):
+        while node:
+            print(node.val, end=" -> ")
+            node = node.next
+        print("None")
+
+'''
