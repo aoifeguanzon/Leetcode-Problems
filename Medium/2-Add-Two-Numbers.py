@@ -81,7 +81,6 @@ Process both lists simultaneously
 '''
 
 # We could also use linked lists and iterate over the nodes but the solution takes longer to write, and time / space complexities are the same
-'''
 class ListNode:
     def __init__(self, val=0, next=None):
         self.val = val
@@ -89,20 +88,24 @@ class ListNode:
 
 class Solution:
     def addTwoNumbers(self, l1, l2):
-        dummy_head = ListNode(0)  # dummy node
+        dummy_head = ListNode(0)  # dummy node as placeholder to simplify list building
         current = dummy_head  # pointer to build the result list
+        carry = 0
         
-        while l1 or l2:
+        while l1 or l2 or carry:  # continue while either list has values or there's a carry
+            # get the values from l1 and l2, or use 0 if the list is exhausted
             val1 = l1.val if l1 else 0
             val2 = l2.val if l2 else 0
-            total = val1 + val2
-            current.next = ListNode(total)  # add to result list
-            current = current.next  # move to next node
             
-            if l1: l1 = l1.next
-            if l2: l2 = l2.next
+            total = val1 + val2 + carry  # add the values and any carry from the previous step
+            
+            carry = total // 10  # calculate the new carry (if total >= 10)
+            current.next = ListNode(total % 10)  # add 'ones' digit to the result list
+            
+            current = current.next  # move to the next node in the result list
+            
+            if l1: l1 = l1.next  # move to the next node in l1 if it exists
+            if l2: l2 = l2.next  # move to the next node in l2 if it exists
         
-        return dummy_head.next  # return after skipping the dummy node
+        return dummy_head.next  # return the node after the dummy node
 
-
-'''
