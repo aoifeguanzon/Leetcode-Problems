@@ -99,7 +99,7 @@ class Solution:
         carry = 0
         
         while l1 or l2 or carry:
-            # continue loop until pointers of l1 node and l2 node are None, and carry is also 0
+            # continue loop until l1 and l2 are both None (ie. we've reached the last node in both lists) and there's no carry
             # get the value of the current node from l1 and l2, or use 0 if the list is exhausted
             val1 = l1.val if l1 else 0
             val2 = l2.val if l2 else 0
