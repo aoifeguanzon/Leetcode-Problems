@@ -2,22 +2,21 @@
 Given a string s which consists of lowercase or uppercase letters, 
 return the length of the longest palindrome that can be built with those letters.
 '''
-# Brute force solution
+# Brute force
 def longestPalindrome(s):
     count = 0
     ans = 0
     a = set(s)
 
-    for i in a:
-        if i % 2 == 0:
-            c = s.count(i)
-            if c % 2 == 0:
-                ans += c
-            else:
-                ans += c - 1
-                count = 1
+    for i in a: # for all values in set a of unique chars in string s
+        c = s.count(i) # count instances of char
+        if c % 2 == 0: # if even
+            ans += c # add to answer
+        else: # if odd
+            ans += c - 1 # add closest even number to answer, we need pairs for symmetry
+            count = 1 # odd count has been found
     
-    print(ans + count)
+    print(ans + count) # total pairs + 1 if any chars occur an odd amount of times
 
 '''
 Time Complexity: O(n²)  
