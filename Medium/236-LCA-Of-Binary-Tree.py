@@ -1,5 +1,5 @@
 '''
-Given 2 nodes, find the closest ancestor (node connected to both nodes)
+Given 2 nodes in an (unordered) binary tree, find the closest ancestor (node connected to both nodes)
 '''
 
 # Brute force: two dfs
