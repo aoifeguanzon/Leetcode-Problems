@@ -1,4 +1,4 @@
- '''
+'''
 Count how many separate groups of connected '1's (land) exist in a 2D grid, 
 where connections can be horizontal or vertical.
 '''
