@@ -33,7 +33,13 @@ class Solution: # find path to q then find another path to p
             i += 1
 
         return path_p[i - 1]
+'''
+Time complexity: O(N) 
+Execution time increases in proportion to the number of nodes in the tree
 
+Space complexity: O(N) 
+Due to storing the paths for both p and q, which can be as long as the height of the tree.
+'''
 
 
 # Optimal solution: one dfs
@@ -59,6 +65,12 @@ class Solution: # notice outer function takes root, inner functions take next no
             return root # if both sides found something, this node is the LCA
 
         return left if left else right  # otherwise return the side that found p or q (or None if neither)
+'''
+Time complexity: O(N) because we perform a single DFS traversal of the tree, visiting each node once.
+
+Space complexity: O(N) because of the recursion stack, which can reach a depth of N in the worst case (for a skewed tree).
+'''
+
 '''
 It took me so long to wrap my head around the logic of this, i think it was because i somehow thought root.left/right updates the root variable in the outer function, which just doesn't happen
 Have to remember that recursion keeps happening until we find p or q or end of tree, so if left and/or right have a value, it has to be p or q!
