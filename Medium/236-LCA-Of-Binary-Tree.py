@@ -54,6 +54,7 @@ class Solution: # notice outer function takes root, inner functions take next no
         # root is the current node we're checking
         if not root or root == p or root == q:  # if node is null or matches p or q, return it
             return root # if we were searching left, now search right, then after that begin backtracking
+        # recursion happens until we hit base case
         
         # search in left and right subtrees
         left = self.lowestCommonAncestor(root.left, p, q)   # go left
@@ -73,7 +74,7 @@ Space complexity: O(N) because of the recursion stack, which can reach a depth o
 
 '''
 It took me so long to wrap my head around the logic of this, i think it was because i somehow thought root.left/right updates the root variable in the outer function, which just doesn't happen
-Have to remember that recursion keeps happening until we find p or q or end of tree, so if left and/or right have a value, it has to be p or q!
+Have to remember that recursion keeps happening until we find p or q or end of tree, so if left and/or right have a value, it has to be p or q! - purpose of the base case
 '''
 
 '''
