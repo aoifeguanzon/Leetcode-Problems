@@ -3,6 +3,7 @@ Design a data structure that follows the constraints of a Least Recently Used (L
 An LRU (Least Recently Used) cache is used in situations where you want to efficiently manage limited storage (eg. memory or disk space) 
 by automatically discarding the least recently accessed data when new data needs to be stored, and the cache is full.
 '''
+
 # Solution 1
 class LRUCache:
 
@@ -90,7 +91,6 @@ class LRUCache:
         node = self.Node(key, value)  # create new node with key and value
         self.cache[key] = node  # add it to the dictionary
         self._insert(node)  # insert it at the front (most recently used)
-
 
 
 '''
