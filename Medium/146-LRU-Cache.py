@@ -55,7 +55,7 @@ class LRUCache:
 
     '''
     When we insert a new node, we always put it right after head, no matter what
-    When we evict the least recently used node, it’s always the one right before taiil
+    When we evict the least recently used node, it’s always the one right before tail
     This setup guarantees a stable structure where:
     
     head <-> most recent <-> ... <-> least recent <-> tail
