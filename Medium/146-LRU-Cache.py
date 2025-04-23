@@ -99,5 +99,6 @@ Hash map for access
 Doubly linked list for insertions and deletions
 
 Space complexity: O(k)
-Store the key-value pairs in the dictionary and the nodes in the doubly linked list, which require linear space proportional to the cache size
+Store the key-value pairs in the dictionary and the nodes in the doubly linked list, 
+which require linear space proportional to the cache size
 '''
